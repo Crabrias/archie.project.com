@@ -848,35 +848,42 @@
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
-      <div class="modal-header justify-content-center">
-        <h1 class="modal-title" id="exampleModalLabel">Rate This</h1>
+      <div class="modal-header justify-content-center" style="border-bottom: none;">
+        <h1 class="modal-title text-warning" id="exampleModalLabel">Rate This Movie</h1>
       </div>
-      <div class="rating-body">
-        <!-- The rating class is used to create the rating bar using radio input elements and labels -->
-  <div class="rating">
-    <input type="radio" name="rating" id="rating-1" value="1" />
-    <label for="rating-1">★</label>
-    <input type="radio" name="rating" id="rating-2" value="2" />
-    <label for="rating-2">★</label>
-    <input type="radio" name="rating" id="rating-3" value="3" />
-    <label for="rating-3">★</label>
-    <input type="radio" name="rating" id="rating-4" value="4" />
-    <label for="rating-4">★</label>
-    <input type="radio" name="rating" id="rating-5" value="5" />
-    <label for="rating-5">★</label>
-    <input type="radio" name="rating" id="rating-6" value="6" />
-    <label for="rating-6">★</label>
-    <input type="radio" name="rating" id="rating-7" value="7" />
-    <label for="rating-7">★</label>
-    <input type="radio" name="rating" id="rating-8" value="8" />
-    <label for="rating-8">★</label>
-    <input type="radio" name="rating" id="rating-9" value="9" />
-    <label for="rating-9">★</label>
-    <input type="radio" name="rating" id="rating-10" value="10" />
-    <label for="rating-10">★</label>
-  </div>
+      <div class="modal-body">
+        <div class="rating-body">
+          <!-- The rating class is used to create the rating bar using radio input elements and labels -->
+          <div class="rating">
+            <input type="radio" name="rating" id="rating-1" value="1" />
+            <label for="rating-1">★</label>
+            <input type="radio" name="rating" id="rating-2" value="2" />
+            <label for="rating-2">★</label>
+            <input type="radio" name="rating" id="rating-3" value="3" />
+            <label for="rating-3">★</label>
+            <input type="radio" name="rating" id="rating-4" value="4" />
+            <label for="rating-4">★</label>
+            <input type="radio" name="rating" id="rating-5" value="5" />
+            <label for="rating-5">★</label>
+            <input type="radio" name="rating" id="rating-6" value="6" />
+            <label for="rating-6">★</label>
+            <input type="radio" name="rating" id="rating-7" value="7" />
+            <label for="rating-7">★</label>
+            <input type="radio" name="rating" id="rating-8" value="8" />
+            <label for="rating-8">★</label>
+            <input type="radio" name="rating" id="rating-9" value="9" />
+            <label for="rating-9">★</label>
+            <input type="radio" name="rating" id="rating-10" value="10" />
+            <label for="rating-10">★</label>
+          </div>
+        </div>
+        <br>
+        <!-- added a line break -->
+        <div class="comment-body text-center">
+          <textarea name="" id="" placeholder="Comment" rows="5" class="form-control"></textarea>
+        </div>
       </div>
-      <div class="modal-footer justify-content-center">
+      <div class="modal-footer justify-content-center" style="border-top: none;">
         <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Rate</button>
       </div>
     </div>
