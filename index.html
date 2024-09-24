@@ -9,7 +9,6 @@
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.122.0">
     <title>Archie Web App</title>
-
     <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/album/">
 
     
@@ -19,6 +18,43 @@
 <link href="bootstrap.min.css" rel="stylesheet">
 
     <style>
+         /* The rating class is used to style the rating bar and make it responsive */
+.rating {
+  font-size: 0; /* Remove any font size */
+  direction: rtl; /* Set direction to right-to-left for proper star display */
+}
+
+/* Hide the radio input element of the rating bar */
+.rating input {
+  display: none;
+}
+
+/* Style the label elements to display as stars and to allow for interactivity */
+.rating label {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin: 0;
+  padding: 0;
+  font-size: 24px;
+  text-align: center;
+  line-height: 20px;
+  cursor: pointer;
+  color: #ccc;
+  transform: rotateY(180deg); /* Flip the star to display properly */
+}
+
+/* Style the label elements when hovered over or checked */
+.rating label:hover,
+.rating label:hover ~ label,
+.rating input:checked ~ label {
+  color: #f90; /* Change the color of the star to yellow when hovered over or checked */
+}
+.modal-body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
       .bd-placeholder-img {
         font-size: 1.125rem;
         text-anchor: middle;
@@ -71,29 +107,16 @@
         -webkit-overflow-scrolling: touch;
       }
 
-      .btn-bd-primary {
-        --bd-violet-bg: #712cf9;
-        --bd-violet-rgb: 112.520718, 44.062154, 249.437846;
-
-        --bs-btn-font-weight: 600;
-        --bs-btn-color: var(--bs-white);
-        --bs-btn-bg: var(--bd-violet-bg);
-        --bs-btn-border-color: var(--bd-violet-bg);
-        --bs-btn-hover-color: var(--bs-white);
-        --bs-btn-hover-bg: #6528e0;
-        --bs-btn-hover-border-color: #6528e0;
-        --bs-btn-focus-shadow-rgb: var(--bd-violet-rgb);
-        --bs-btn-active-color: var(--bs-btn-hover-color);
-        --bs-btn-active-bg: #5a23c8;
-        --bs-btn-active-border-color: #5a23c8;
-      }
-
       .bd-mode-toggle {
         z-index: 1500;
       }
 
       .bd-mode-toggle .dropdown-menu .active .bi {
         display: block !important;
+      }
+      .input-container {
+        flex-grow: 1; /* make the container take up the remaining space */
+        justify-content: center; /* center the input field horizontally */
       }
     </style>
 
@@ -107,11 +130,11 @@
     <div class="container">
       <div class="row">
         <div class="col-sm-8 col-md-7 py-4">
-          <h4>About</h4>
-          <p class="text-body-secondary">Add some information about the album below, the author, or any other background context. Make it a few sentences long so folks can pick up some informative tidbits. Then, link them off to some social networking sites or contact information.</p>
+          <h4 class="text-warning">About</h4>
+          <p class="text-white">Add some information about the album below, the author, or any other background context. Make it a few sentences long so folks can pick up some informative tidbits. Then, link them off to some social networking sites or contact information.</p>
         </div>
         <div class="col-sm-4 offset-md-1 py-4">
-          <h4>Contact</h4>
+          <h4 class="text-warning">Contact</h4>
           <ul class="list-unstyled">
             <li><a href="#" class="text-white">Follow on Twitter</a></li>
             <li><a href="#" class="text-white">Like on Facebook</a></li>
@@ -124,11 +147,14 @@
   <div class="navbar navbar-dark bg-dark shadow-sm">
     <div class="container d-flex justify-content-between">
       <a href="#" class="navbar-brand d-flex align-items-center">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" class="me-2" viewBox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
-        <strong>Archie Web App</strong>
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="#ffc107" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" aria-hidden="true" class="me-2" viewBox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+        <strong class="text-warning">Archie Web App</strong>
       </a>
+      <div class="input-container">
+        <input type="text" class="form-control" style="width: 50%; margin: 0 auto;" placeholder="Search">
+      </div>
       <div class="d-flex ms-auto">
-        <button class="navbar-toggler fw-bold me-2" type="button" data-bs-toggle="modal" data-bs-target="#exampleModalToggle" aria-controls="" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler fw-bold me-2 text-white" type="button" data-bs-toggle="modal" data-bs-target="#exampleModalToggle" aria-controls="" aria-expanded="false" aria-label="Toggle navigation">
           Sign In
         </button>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
@@ -140,92 +166,169 @@
 </header>
 
 <main>
-
+  <h1 class="text-warning m-3">Featured Today</h1>
   <section class="py-5 text-center container">
     <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
       <div class="carousel-inner">
         <div class="carousel-item active" data-bs-interval="10000">
           <div class="d-flex justify-content-center align-items-center">
-            <img src="AT.jpg" height="450" class="d-block mx-auto" alt="...">
+            <img src="promotion1.jpg" height="450" class="d-block mx-auto" alt="...">
           </div>
         </div>
         <div class="carousel-item" data-bs-interval="2000">
           <div class="d-flex justify-content-center align-items-center">
-            <img src="angle.jpg" height="450" class="d-block mx-auto" alt="...">
+            <img src="promotion2.jpg" height="450" class="d-block mx-auto" alt="...">
           </div>
         </div>
         <div class="carousel-item">
           <div class="d-flex justify-content-center align-items-center">
-            <img src="lady.jpg" height="450" class="d-block mx-auto" alt="...">
+            <img src="promotion3.jpg" height="450" class="d-block mx-auto" alt="...">
           </div>
         </div>
       </div>
-      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+      <button class="carousel-control-prev" style="width: 100px;" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Previous</span>
       </button>
-      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+      <button class="carousel-control-next" style="width: 100px;" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Next</span>
       </button>
     </div>
   </section>
-  
-
- <div id="cardCarousel" class="carousel slide" data-bs-ride="carousel">
+  <h1 class="text-warning m-3">Popular Right Now</h1>
+ <div id="cardCarousel1" class="carousel slide" data-bs-ride="carousel">
   <div class="carousel-inner">
     <div class="carousel-item active">
       <div class="album py-5 bg-body-tertiary">
         <div class="container">
           <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
             <!-- Card 1 -->
-            <div class="col">
-              <div class="card shadow-sm">
-                <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+            <div class="col-md-2">
+              <div class="card shadow-sm" style="width:190px; height: 440px;">
+                <img src="joker.jpg" class="card-img-top" alt="Card image" style="width: 100%; height: 100%; object-fit: cover; object-position: center;">
                 <div class="card-body">
-                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
                   <div class="d-flex justify-content-between align-items-center">
                     <div class="btn-group">
-                      <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                      <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                      <button type="button" class="btn btn-sm btn-outline-secondary">Rate</button>
+                      <button type="button" class="btn btn-sm btn-outline-secondary text-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">Rate</button>
                     </div>
-                    <small class="text-body-secondary">9 mins</small>
+                    <small class="text-body-secondary">9⭐</small>
                   </div>
+                  <p class="card-text text-white text-left pt-2">Joker</p>
+                  <a href="#" class="navbar-brand d-flex justify-content-center align-items-center pt-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" viewBox="0 0 24 24">
+                      <path d="M12 2L20 12 12 22z"/>
+                    </svg>
+                    <strong class="text-white ms-2">Trailer</strong>
+                  </a>
                 </div>
               </div>
             </div>
-            <!-- Card 2 -->
-            <div class="col">
-              <div class="card shadow-sm">
-                <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+
+            
+
+            <!-- Card 1 -->
+            <div class="col-md-2">
+              <div class="card shadow-sm" style="width:190px; height: 440px;">
+                <img src="joker.jpg" class="card-img-top" alt="Card image" style="width: 100%; height: 100%; object-fit: cover; object-position: center;">
                 <div class="card-body">
-                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
                   <div class="d-flex justify-content-between align-items-center">
                     <div class="btn-group">
-                      <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                      <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                      <button type="button" class="btn btn-sm btn-outline-secondary">Rate</button>
+                      <button type="button" class="btn btn-sm btn-outline-secondary text-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">Rate</button>
                     </div>
-                    <small class="text-body-secondary">9 mins</small>
+                    <small class="text-body-secondary">9⭐</small>
                   </div>
+                  <p class="card-text text-white text-left pt-2">Joker</p>
+                  <a href="#" class="navbar-brand d-flex justify-content-center align-items-center pt-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" viewBox="0 0 24 24">
+                      <path d="M12 2L20 12 12 22z"/>
+                    </svg>
+                    <strong class="text-white ms-2">Trailer</strong>
+                  </a>
                 </div>
               </div>
             </div>
-            <!-- Card 3 -->
-            <div class="col">
-              <div class="card shadow-sm">
-                <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+            <!-- Card 1 -->
+            <div class="col-md-2">
+              <div class="card shadow-sm" style="width:190px; height: 440px;">
+                <img src="joker.jpg" class="card-img-top" alt="Card image" style="width: 100%; height: 100%; object-fit: cover; object-position: center;">
                 <div class="card-body">
-                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
                   <div class="d-flex justify-content-between align-items-center">
                     <div class="btn-group">
-                      <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                      <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                      <button type="button" class="btn btn-sm btn-outline-secondary">Rate</button>
+                      <button type="button" class="btn btn-sm btn-outline-secondary text-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">Rate</button>
                     </div>
-                    <small class="text-body-secondary">9 mins</small>
+                    <small class="text-body-secondary">9⭐</small>
                   </div>
+                  <p class="card-text text-white text-left pt-2">Joker</p>
+                  <a href="#" class="navbar-brand d-flex justify-content-center align-items-center pt-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" viewBox="0 0 24 24">
+                      <path d="M12 2L20 12 12 22z"/>
+                    </svg>
+                    <strong class="text-white ms-2">Trailer</strong>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <!-- Card 1 -->
+            <div class="col-md-2">
+              <div class="card shadow-sm" style="width:190px; height: 440px;">
+                <img src="joker.jpg" class="card-img-top" alt="Card image" style="width: 100%; height: 100%; object-fit: cover; object-position: center;">
+                <div class="card-body">
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-sm btn-outline-secondary text-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">Rate</button>
+                    </div>
+                    <small class="text-body-secondary">9⭐</small>
+                  </div>
+                  <p class="card-text text-white text-left pt-2">Joker</p>
+                  <a href="#" class="navbar-brand d-flex justify-content-center align-items-center pt-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" viewBox="0 0 24 24">
+                      <path d="M12 2L20 12 12 22z"/>
+                    </svg>
+                    <strong class="text-white ms-2">Trailer</strong>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <!-- Card 1 -->
+            <div class="col-md-2">
+              <div class="card shadow-sm" style="width:190px; height: 440px;">
+                <img src="joker.jpg" class="card-img-top" alt="Card image" style="width: 100%; height: 100%; object-fit: cover; object-position: center;">
+                <div class="card-body">
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-sm btn-outline-secondary text-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">Rate</button>
+                    </div>
+                    <small class="text-body-secondary">9⭐</small>
+                  </div>
+                  <p class="card-text text-white text-left pt-2">Joker</p>
+                  <a href="#" class="navbar-brand d-flex justify-content-center align-items-center pt-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" viewBox="0 0 24 24">
+                      <path d="M12 2L20 12 12 22z"/>
+                    </svg>
+                    <strong class="text-white ms-2">Trailer</strong>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <!-- Card 1 -->
+            <div class="col-md-2">
+              <div class="card shadow-sm" style="width:190px; height: 440px;">
+                <img src="joker.jpg" class="card-img-top" alt="Card image" style="width: 100%; height: 100%; object-fit: cover; object-position: center;">
+                <div class="card-body">
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-sm btn-outline-secondary text-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">Rate</button>
+                    </div>
+                    <small class="text-body-secondary">9⭐</small>
+                  </div>
+                  <p class="card-text text-white text-left pt-2">Joker</p>
+                  <a href="#" class="navbar-brand d-flex justify-content-center align-items-center pt-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" viewBox="0 0 24 24">
+                      <path d="M12 2L20 12 12 22z"/>
+                    </svg>
+                    <strong class="text-white ms-2">Trailer</strong>
+                  </a>
                 </div>
               </div>
             </div>
@@ -238,54 +341,129 @@
       <div class="album py-5 bg-body-tertiary">
         <div class="container">
           <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-            <!-- Card 1 -->
-            <div class="col">
-              <div class="card shadow-sm">
-                <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+             <!-- Card 1 -->
+            <div class="col-md-2">
+              <div class="card shadow-sm" style="width:190px; height: 440px;">
+                <img src="tomb.jpg" class="card-img-top" alt="Card image" style="width: 100%; height: 100%; object-fit: cover; object-position: center;">
                 <div class="card-body">
-                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
                   <div class="d-flex justify-content-between align-items-center">
                     <div class="btn-group">
-                      <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                      <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                      <button type="button" class="btn btn-sm btn-outline-secondary">Rate</button>
+                      <button type="button" class="btn btn-sm btn-outline-secondary text-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">Rate</button>
                     </div>
-                    <small class="text-body-secondary">9 mins</small>
+                    <small class="text-body-secondary">9⭐</small>
                   </div>
+                  <p class="card-text text-white text-left pt-2">Tomb Raider</p>
+                  <a href="#" class="navbar-brand d-flex justify-content-center align-items-center pt-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" viewBox="0 0 24 24">
+                      <path d="M12 2L20 12 12 22z"/>
+                    </svg>
+                    <strong class="text-white ms-2">Trailer</strong>
+                  </a>
                 </div>
               </div>
             </div>
-            <!-- Card 2 -->
-            <div class="col">
-              <div class="card shadow-sm">
-                <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+             <!-- Card 1 -->
+            <div class="col-md-2">
+              <div class="card shadow-sm" style="width:190px; height: 440px;">
+                <img src="tomb.jpg" class="card-img-top" alt="Card image" style="width: 100%; height: 100%; object-fit: cover; object-position: center;">
                 <div class="card-body">
-                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
                   <div class="d-flex justify-content-between align-items-center">
                     <div class="btn-group">
-                      <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                      <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                      <button type="button" class="btn btn-sm btn-outline-secondary">Rate</button>
+                      <button type="button" class="btn btn-sm btn-outline-secondary text-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">Rate</button>
                     </div>
-                    <small class="text-body-secondary">9 mins</small>
+                    <small class="text-body-secondary">9⭐</small>
                   </div>
+                  <p class="card-text text-white text-left pt-2">Tomb Raider</p>
+                  <a href="#" class="navbar-brand d-flex justify-content-center align-items-center pt-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" viewBox="0 0 24 24">
+                      <path d="M12 2L20 12 12 22z"/>
+                    </svg>
+                    <strong class="text-white ms-2">Trailer</strong>
+                  </a>
                 </div>
               </div>
             </div>
-            <!-- Card 3 -->
-            <div class="col">
-              <div class="card shadow-sm">
-                <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+             <!-- Card 1 -->
+            <div class="col-md-2">
+              <div class="card shadow-sm" style="width:190px; height: 440px;">
+                <img src="tomb.jpg" class="card-img-top" alt="Card image" style="width: 100%; height: 100%; object-fit: cover; object-position: center;">
                 <div class="card-body">
-                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
                   <div class="d-flex justify-content-between align-items-center">
                     <div class="btn-group">
-                      <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                      <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                      <button type="button" class="btn btn-sm btn-outline-secondary">Rate</button>
+                      <button type="button" class="btn btn-sm btn-outline-secondary text-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">Rate</button>
                     </div>
-                    <small class="text-body-secondary">9 mins</small>
+                    <small class="text-body-secondary">9⭐</small>
                   </div>
+                  <p class="card-text text-white text-left pt-2">Tomb Raider</p>
+                  <a href="#" class="navbar-brand d-flex justify-content-center align-items-center pt-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" viewBox="0 0 24 24">
+                      <path d="M12 2L20 12 12 22z"/>
+                    </svg>
+                    <strong class="text-white ms-2">Trailer</strong>
+                  </a>
+                </div>
+              </div>
+            </div>
+             <!-- Card 1 -->
+            <div class="col-md-2">
+              <div class="card shadow-sm" style="width:190px; height: 440px;">
+                <img src="tomb.jpg" class="card-img-top" alt="Card image" style="width: 100%; height: 100%; object-fit: cover; object-position: center;">
+                <div class="card-body">
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-sm btn-outline-secondary text-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">Rate</button>
+                    </div>
+                    <small class="text-body-secondary">9⭐</small>
+                  </div>
+                  <p class="card-text text-white text-left pt-2">Tomb Raider</p>
+                  <a href="#" class="navbar-brand d-flex justify-content-center align-items-center pt-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" viewBox="0 0 24 24">
+                      <path d="M12 2L20 12 12 22z"/>
+                    </svg>
+                    <strong class="text-white ms-2">Trailer</strong>
+                  </a>
+                </div>
+              </div>
+            </div>
+             <!-- Card 1 -->
+            <div class="col-md-2">
+              <div class="card shadow-sm" style="width:190px; height: 440px;">
+                <img src="tomb.jpg" class="card-img-top" alt="Card image" style="width: 100%; height: 100%; object-fit: cover; object-position: center;">
+                <div class="card-body">
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-sm btn-outline-secondary text-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">Rate</button>
+                    </div>
+                    <small class="text-body-secondary">9⭐</small>
+                  </div>
+                  <p class="card-text text-white text-left pt-2">Tomb Raider</p>
+                  <a href="#" class="navbar-brand d-flex justify-content-center align-items-center pt-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" viewBox="0 0 24 24">
+                      <path d="M12 2L20 12 12 22z"/>
+                    </svg>
+                    <strong class="text-white ms-2">Trailer</strong>
+                  </a>
+                </div>
+              </div>
+            </div>
+             <!-- Card 1 -->
+            <div class="col-md-2">
+              <div class="card shadow-sm" style="width:190px; height: 440px;">
+                <img src="tomb.jpg" class="card-img-top" alt="Card image" style="width: 100%; height: 100%; object-fit: cover; object-position: center;">
+                <div class="card-body">
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-sm btn-outline-secondary text-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">Rate</button>
+                    </div>
+                    <small class="text-body-secondary">9⭐</small>
+                  </div>
+                  <p class="card-text text-white text-left pt-2">Tomb Raider</p>
+                  <a href="#" class="navbar-brand d-flex justify-content-center align-items-center pt-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" viewBox="0 0 24 24">
+                      <path d="M12 2L20 12 12 22z"/>
+                    </svg>
+                    <strong class="text-white ms-2">Trailer</strong>
+                  </a>
                 </div>
               </div>
             </div>
@@ -296,71 +474,146 @@
     <!-- Additional carousel items go here, structured like above -->
   </div>
   
-  <button class="carousel-control-prev" type="button" data-bs-target="#cardCarousel" data-bs-slide="prev">
+  <button class="carousel-control-prev" type="button" style="width: 100px;" data-bs-target="#cardCarousel1" data-bs-slide="prev">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
     <span class="visually-hidden">Previous</span>
   </button>
   
-  <button class="carousel-control-next" type="button" data-bs-target="#cardCarousel" data-bs-slide="next">
+  <button class="carousel-control-next" type="button" style="width: 100px;" data-bs-target="#cardCarousel1" data-bs-slide="next">
     <span class="carousel-control-next-icon" aria-hidden="true"></span>
     <span class="visually-hidden">Next</span>
   </button>
 </div>
-
+<h1 class="text-warning m-3">On Theater</h1>
 <div id="cardCarousel" class="carousel slide" data-bs-ride="carousel">
   <div class="carousel-inner">
     <div class="carousel-item active">
       <div class="album py-5 bg-body-tertiary">
         <div class="container">
           <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-            <!-- Card 1 -->
-            <div class="col">
-              <div class="card shadow-sm">
-                <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+             <!-- Card 1 -->
+            <div class="col-md-2">
+              <div class="card shadow-sm" style="width:190px; height: 440px;">
+                <img src="blits.jpg" class="card-img-top" alt="Card image" style="width: 100%; height: 100%; object-fit: cover; object-position: center;">
                 <div class="card-body">
-                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
                   <div class="d-flex justify-content-between align-items-center">
                     <div class="btn-group">
-                      <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                      <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                      <button type="button" class="btn btn-sm btn-outline-secondary">Rate</button>
+                      <button type="button" class="btn btn-sm btn-outline-secondary text-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">Rate</button>
                     </div>
-                    <small class="text-body-secondary">9 mins</small>
+                    <small class="text-body-secondary">9⭐</small>
                   </div>
+                  <p class="card-text text-white text-left pt-2">Blitz</p>
+                  <a href="#" class="navbar-brand d-flex justify-content-center align-items-center pt-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" viewBox="0 0 24 24">
+                      <path d="M12 2L20 12 12 22z"/>
+                    </svg>
+                    <strong class="text-white ms-2">Trailer</strong>
+                  </a>
                 </div>
               </div>
             </div>
-            <!-- Card 2 -->
-            <div class="col">
-              <div class="card shadow-sm">
-                <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+             <!-- Card 1 -->
+            <div class="col-md-2">
+              <div class="card shadow-sm" style="width:190px; height: 440px;">
+                <img src="blits.jpg" class="card-img-top" alt="Card image" style="width: 100%; height: 100%; object-fit: cover; object-position: center;">
                 <div class="card-body">
-                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
                   <div class="d-flex justify-content-between align-items-center">
                     <div class="btn-group">
-                      <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                      <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                      <button type="button" class="btn btn-sm btn-outline-secondary">Rate</button>
+                      <button type="button" class="btn btn-sm btn-outline-secondary text-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">Rate</button>
                     </div>
-                    <small class="text-body-secondary">9 mins</small>
+                    <small class="text-body-secondary">9⭐</small>
                   </div>
+                  <p class="card-text text-white text-left pt-2">Blitz</p>
+                  <a href="#" class="navbar-brand d-flex justify-content-center align-items-center pt-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" viewBox="0 0 24 24">
+                      <path d="M12 2L20 12 12 22z"/>
+                    </svg>
+                    <strong class="text-white ms-2">Trailer</strong>
+                  </a>
                 </div>
               </div>
             </div>
-            <!-- Card 3 -->
-            <div class="col">
-              <div class="card shadow-sm">
-                <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+             <!-- Card 1 -->
+            <div class="col-md-2">
+              <div class="card shadow-sm" style="width:190px; height: 440px;">
+                <img src="blits.jpg" class="card-img-top" alt="Card image" style="width: 100%; height: 100%; object-fit: cover; object-position: center;">
                 <div class="card-body">
-                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
                   <div class="d-flex justify-content-between align-items-center">
                     <div class="btn-group">
-                      <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                      <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                      <button type="button" class="btn btn-sm btn-outline-secondary">Rate</button>
+                      <button type="button" class="btn btn-sm btn-outline-secondary text-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">Rate</button>
                     </div>
-                    <small class="text-body-secondary">9 mins</small>
+                    <small class="text-body-secondary">9⭐</small>
                   </div>
+                  <p class="card-text text-white text-left pt-2">Blitz</p>
+                  <a href="#" class="navbar-brand d-flex justify-content-center align-items-center pt-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" viewBox="0 0 24 24">
+                      <path d="M12 2L20 12 12 22z"/>
+                    </svg>
+                    <strong class="text-white ms-2">Trailer</strong>
+                  </a>
+                </div>
+              </div>
+            </div>
+             <!-- Card 1 -->
+            <div class="col-md-2">
+              <div class="card shadow-sm" style="width:190px; height: 440px;">
+                <img src="blits.jpg" class="card-img-top" alt="Card image" style="width: 100%; height: 100%; object-fit: cover; object-position: center;">
+                <div class="card-body">
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-sm btn-outline-secondary text-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">Rate</button>
+                    </div>
+                    <small class="text-body-secondary">9⭐</small>
+                  </div>
+                  <p class="card-text text-white text-left pt-2">Blitz</p>
+                  <a href="#" class="navbar-brand d-flex justify-content-center align-items-center pt-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" viewBox="0 0 24 24">
+                      <path d="M12 2L20 12 12 22z"/>
+                    </svg>
+                    <strong class="text-white ms-2">Trailer</strong>
+                  </a>
+                </div>
+              </div>
+            </div>
+             <!-- Card 1 -->
+            <div class="col-md-2">
+              <div class="card shadow-sm" style="width:190px; height: 440px;">
+                <img src="blits.jpg" class="card-img-top" alt="Card image" style="width: 100%; height: 100%; object-fit: cover; object-position: center;">
+                <div class="card-body">
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-sm btn-outline-secondary text-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">Rate</button>
+                    </div>
+                    <small class="text-body-secondary">9⭐</small>
+                  </div>
+                  <p class="card-text text-white text-left pt-2">Blitz</p>
+                  <a href="#" class="navbar-brand d-flex justify-content-center align-items-center pt-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" viewBox="0 0 24 24">
+                      <path d="M12 2L20 12 12 22z"/>
+                    </svg>
+                    <strong class="text-white ms-2">Trailer</strong>
+                  </a>
+                </div>
+              </div>
+            </div>
+             <!-- Card 1 -->
+            <div class="col-md-2">
+              <div class="card shadow-sm" style="width:190px; height: 440px;">
+                <img src="blits.jpg" class="card-img-top" alt="Card image" style="width: 100%; height: 100%; object-fit: cover; object-position: center;">
+                <div class="card-body">
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-sm btn-outline-secondary text-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">Rate</button>
+                    </div>
+                    <small class="text-body-secondary">9⭐</small>
+                  </div>
+                  <p class="card-text text-white text-left pt-2">Blitz</p>
+                  <a href="#" class="navbar-brand d-flex justify-content-center align-items-center pt-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" viewBox="0 0 24 24">
+                      <path d="M12 2L20 12 12 22z"/>
+                    </svg>
+                    <strong class="text-white ms-2">Trailer</strong>
+                  </a>
                 </div>
               </div>
             </div>
@@ -373,192 +626,133 @@
       <div class="album py-5 bg-body-tertiary">
         <div class="container">
           <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-            <!-- Card 1 -->
-            <div class="col">
-              <div class="card shadow-sm">
-                <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+             <!-- Card 1 -->
+            <div class="col-md-2">
+              <div class="card shadow-sm" style="width:190px; height: 440px;">
+                <img src="dont.jpg" class="card-img-top" alt="Card image" style="width: 100%; height: 100%; object-fit: cover; object-position: center;">
                 <div class="card-body">
-                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
                   <div class="d-flex justify-content-between align-items-center">
                     <div class="btn-group">
-                      <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                      <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                      <button type="button" class="btn btn-sm btn-outline-secondary">Rate</button>
+                      <button type="button" class="btn btn-sm btn-outline-secondary text-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">Rate</button>
                     </div>
-                    <small class="text-body-secondary">9 mins</small>
+                    <small class="text-body-secondary">9⭐</small>
                   </div>
+                  <p class="card-text text-white text-left pt-2">Don't Move</p>
+                  <a href="#" class="navbar-brand d-flex justify-content-center align-items-center pt-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" viewBox="0 0 24 24">
+                      <path d="M12 2L20 12 12 22z"/>
+                    </svg>
+                    <strong class="text-white ms-2">Trailer</strong>
+                  </a>
                 </div>
               </div>
             </div>
-            <!-- Card 2 -->
-            <div class="col">
-              <div class="card shadow-sm">
-                <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+             <!-- Card 1 -->
+            <div class="col-md-2">
+              <div class="card shadow-sm" style="width:190px; height: 440px;">
+                <img src="dont.jpg" class="card-img-top" alt="Card image" style="width: 100%; height: 100%; object-fit: cover; object-position: center;">
                 <div class="card-body">
-                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
                   <div class="d-flex justify-content-between align-items-center">
                     <div class="btn-group">
-                      <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                      <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                      <button type="button" class="btn btn-sm btn-outline-secondary">Rate</button>
+                      <button type="button" class="btn btn-sm btn-outline-secondary text-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">Rate</button>
                     </div>
-                    <small class="text-body-secondary">9 mins</small>
+                    <small class="text-body-secondary">9⭐</small>
                   </div>
+                  <p class="card-text text-white text-left pt-2">Don't Move</p>
+                  <a href="#" class="navbar-brand d-flex justify-content-center align-items-center pt-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" viewBox="0 0 24 24">
+                      <path d="M12 2L20 12 12 22z"/>
+                    </svg>
+                    <strong class="text-white ms-2">Trailer</strong>
+                  </a>
                 </div>
               </div>
             </div>
-            <!-- Card 3 -->
-            <div class="col">
-              <div class="card shadow-sm">
-                <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+             <!-- Card 1 -->
+            <div class="col-md-2">
+              <div class="card shadow-sm" style="width:190px; height: 440px;">
+                <img src="dont.jpg" class="card-img-top" alt="Card image" style="width: 100%; height: 100%; object-fit: cover; object-position: center;">
                 <div class="card-body">
-                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
                   <div class="d-flex justify-content-between align-items-center">
                     <div class="btn-group">
-                      <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                      <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                      <button type="button" class="btn btn-sm btn-outline-secondary">Rate</button>
+                      <button type="button" class="btn btn-sm btn-outline-secondary text-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">Rate</button>
                     </div>
-                    <small class="text-body-secondary">9 mins</small>
+                    <small class="text-body-secondary">9⭐</small>
                   </div>
+                  <p class="card-text text-white text-left pt-2">Don't Move</p>
+                  <a href="#" class="navbar-brand d-flex justify-content-center align-items-center pt-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" viewBox="0 0 24 24">
+                      <path d="M12 2L20 12 12 22z"/>
+                    </svg>
+                    <strong class="text-white ms-2">Trailer</strong>
+                  </a>
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- Additional carousel items go here, structured like above -->
-  </div>
-  
-  <button class="carousel-control-prev" type="button" data-bs-target="#cardCarousel" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-  </button>
-  
-  <button class="carousel-control-next" type="button" data-bs-target="#cardCarousel" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </button>
-</div>
+             <!-- Card 1 -->
+            <div class="col-md-2">
+              <div class="card shadow-sm" style="width:190px; height: 440px;">
+                <img src="dont.jpg" class="card-img-top" alt="Card image" style="width: 100%; height: 100%; object-fit: cover; object-position: center;">
+                <div class="card-body">
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-sm btn-outline-secondary text-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">Rate</button>
+                    </div>
+                    <small class="text-body-secondary">9⭐</small>
+                  </div>
+                  <p class="card-text text-white text-left pt-2">Don't Move</p>
+                  <a href="#" class="navbar-brand d-flex justify-content-center align-items-center pt-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" viewBox="0 0 24 24">
+                      <path d="M12 2L20 12 12 22z"/>
+                    </svg>
+                    <strong class="text-white ms-2">Trailer</strong>
+                  </a>
+                </div>
+              </div>
+            </div>
+             <!-- Card 1 -->
+            <div class="col-md-2">
+              <div class="card shadow-sm" style="width:190px; height: 440px;">
+                <img src="dont.jpg" class="card-img-top" alt="Card image" style="width: 100%; height: 100%; object-fit: cover; object-position: center;">
+                <div class="card-body">
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-sm btn-outline-secondary text-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">Rate</button>
+                    </div>
+                    <small class="text-body-secondary">9⭐</small>
+                  </div>
+                  <p class="card-text text-white text-left pt-2">Don't Move</p>
+                  <a href="#" class="navbar-brand d-flex justify-content-center align-items-center pt-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" viewBox="0 0 24 24">
+                      <path d="M12 2L20 12 12 22z"/>
+                    </svg>
+                    <strong class="text-white ms-2">Trailer</strong>
+                  </a>
+                </div>
+              </div>
+            </div>
+             <!-- Card 1 -->
+            <div class="col-md-2">
+              <div class="card shadow-sm" style="width:190px; height: 440px;">
+                <img src="dont.jpg" class="card-img-top" alt="Card image" style="width: 100%; height: 100%; object-fit: cover; object-position: center;">
+                <div class="card-body">
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-sm btn-outline-secondary text-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">Rate</button>
+                    </div>
+                    <small class="text-body-secondary">9⭐</small>
+                  </div>
+                  <p class="card-text text-white text-left pt-2">Don't Move</p>
+                  <a href="#" class="navbar-brand d-flex justify-content-center align-items-center pt-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" viewBox="0 0 24 24">
+                      <path d="M12 2L20 12 12 22z"/>
+                    </svg>
+                    <strong class="text-white ms-2">Trailer</strong>
+                  </a>
+                </div>
+              </div>
+            </div>
 
-<div id="cardCarousel" class="carousel slide" data-bs-ride="carousel">
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <div class="album py-5 bg-body-tertiary">
-        <div class="container">
-          <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-            <!-- Card 1 -->
-            <div class="col">
-              <div class="card shadow-sm">
-                <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-                <div class="card-body">
-                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                  <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
-                      <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                      <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                      <button type="button" class="btn btn-sm btn-outline-secondary">Rate</button>
-                    </div>
-                    <small class="text-body-secondary">9 mins</small>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- Card 2 -->
-            <div class="col">
-              <div class="card shadow-sm">
-                <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-                <div class="card-body">
-                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                  <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
-                      <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                      <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                      <button type="button" class="btn btn-sm btn-outline-secondary">Rate</button>
-                    </div>
-                    <small class="text-body-secondary">9 mins</small>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- Card 3 -->
-            <div class="col">
-              <div class="card shadow-sm">
-                <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-                <div class="card-body">
-                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                  <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
-                      <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                      <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                      <button type="button" class="btn btn-sm btn-outline-secondary">Rate</button>
-                    </div>
-                    <small class="text-body-secondary">9 mins</small>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    
-    <div class="carousel-item">
-      <div class="album py-5 bg-body-tertiary">
-        <div class="container">
-          <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-            <!-- Card 1 -->
-            <div class="col">
-              <div class="card shadow-sm">
-                <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-                <div class="card-body">
-                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                  <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
-                      <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                      <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                      <button type="button" class="btn btn-sm btn-outline-secondary">Rate</button>
-                    </div>
-                    <small class="text-body-secondary">9 mins</small>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- Card 2 -->
-            <div class="col">
-              <div class="card shadow-sm">
-                <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-                <div class="card-body">
-                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                  <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
-                      <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                      <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                      <button type="button" class="btn btn-sm btn-outline-secondary">Rate</button>
-                    </div>
-                    <small class="text-body-secondary">9 mins</small>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- Card 3 -->
-            <div class="col">
-              <div class="card shadow-sm">
-                <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-                <div class="card-body">
-                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                  <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
-                      <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                      <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                      <button type="button" class="btn btn-sm btn-outline-secondary">Rate</button>
-                    </div>
-                    <small class="text-body-secondary">9 mins</small>
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </div>
@@ -566,12 +760,12 @@
     <!-- Additional carousel items go here, structured like above -->
   </div>
   
-  <button class="carousel-control-prev" type="button" data-bs-target="#cardCarousel" data-bs-slide="prev">
+  <button class="carousel-control-prev" style="width: 100px;" type="button" data-bs-target="#cardCarousel" data-bs-slide="prev">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
     <span class="visually-hidden">Previous</span>
   </button>
   
-  <button class="carousel-control-next" type="button" data-bs-target="#cardCarousel" data-bs-slide="next">
+  <button class="carousel-control-next" style="width: 100px;" type="button" data-bs-target="#cardCarousel" data-bs-slide="next">
     <span class="carousel-control-next-icon" aria-hidden="true"></span>
     <span class="visually-hidden">Next</span>
   </button>
@@ -583,9 +777,9 @@
 <footer class="text-body-secondary py-5">
   <div class="container">
     <p class="float-end mb-1">
-      <a href="#">Back to top</a>
+      <a href="#" class="text-white">Back to top</a>
     </p>
-    <p class="mb-1">This is just an Album example please wait for other updates</p>
+    <p class="mb-1 text-white">This is just an Album example please wait for other updates</p>
   </div>
 </footer>
 
@@ -645,6 +839,45 @@
         <hr class="my-4">
         <p class="text-center">Already Have an Account?</p>
         <button class="w-100 mb-2 btn btn-lg rounded-3 btn-primary"  data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Sign In</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header justify-content-center">
+        <h1 class="modal-title" id="exampleModalLabel">Rate This</h1>
+      </div>
+      <div class="modal-body">
+        <!-- The rating class is used to create the rating bar using radio input elements and labels -->
+  <div class="rating">
+    <input type="radio" name="rating" id="rating-1" value="1" />
+    <label for="rating-1">★</label>
+    <input type="radio" name="rating" id="rating-2" value="2" />
+    <label for="rating-2">★</label>
+    <input type="radio" name="rating" id="rating-3" value="3" />
+    <label for="rating-3">★</label>
+    <input type="radio" name="rating" id="rating-4" value="4" />
+    <label for="rating-4">★</label>
+    <input type="radio" name="rating" id="rating-5" value="5" />
+    <label for="rating-5">★</label>
+    <input type="radio" name="rating" id="rating-5" value="6" />
+    <label for="rating-5">★</label>
+    <input type="radio" name="rating" id="rating-5" value="7" />
+    <label for="rating-5">★</label>
+    <input type="radio" name="rating" id="rating-5" value="8" />
+    <label for="rating-5">★</label>
+    <input type="radio" name="rating" id="rating-5" value="9" />
+    <label for="rating-5">★</label>
+    <input type="radio" name="rating" id="rating-5" value="10" />
+    <label for="rating-5">★</label>
+  </div>
+      </div>
+      <div class="modal-footer justify-content-center">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Rate</button>
       </div>
     </div>
   </div>
