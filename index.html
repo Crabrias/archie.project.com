@@ -10,9 +10,7 @@
     <meta name="generator" content="Hugo 0.122.0">
     <title>Archie Web App</title>
     <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/album/">
-
-    
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
 
 <link href="bootstrap.min.css" rel="stylesheet">
@@ -117,6 +115,9 @@
       .input-container {
         flex-grow: 1; /* make the container take up the remaining space */
         justify-content: center; /* center the input field horizontally */
+      }
+      .custom-commission-font{
+        font-size: 30px;
       }
     </style>
 
@@ -884,12 +885,24 @@
         </div>
       </div>
       <div class="modal-footer justify-content-center" style="border-top: none;">
-        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Rate</button>
+        <button type="button" id="sad" class="btn  btn-primary" data-bs-dismiss="modal">Rate</button>
       </div>
     </div>
   </div>
 </div>
 
 <script src="bootstrap.bundle.min.js"></script>
+<script>
+  document.getElementById('sad').addEventListener('click',displayModal);
+  function displayModal(){
+    Swal.fire({
+      title: "Earned Commission",
+      icon: "success",
+      timerProgressBar: true,
+      timer: 2000,
+      html: '<p class="custom-commission-font">0.00</p>',
+    });
+  }
+</script>
     </body>
 </html>
