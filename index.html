@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en" data-bs-theme="auto">
   <head>
-    <script src="color-modes.js"></script>
+    <!-- <script src="color-modes.js"></script> -->
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -12,6 +12,10 @@
     <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/album/">
     <link href="bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
+    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="css/fontawesome.min.css" rel="stylesheet" type="text/css" />
+    <link href="css/owl.carousel.min.css" rel="stylesheet" type="text/css" />
+    <link href="css/style.css" rel="stylesheet" type="text/css" />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <style>
@@ -118,660 +122,268 @@
       .custom-commission-font{
         font-size: 30px;
       }
+      .carousel-image {
+        object-fit: contain; /* Scales the image to fit within the container while maintaining aspect ratio */
+        width: 100%; /* Ensures the image is responsive to the container width */
+        max-height: 300px; /* Sets a maximum height for the image */
+      }
+      
+      @media (max-width: 768px) {
+        .carousel-image {
+          max-height: 250px; /* Adjust the maximum height for mobile screens */
+        }
+      }
     </style>
 
     
   </head>
-  <body>
-
-    
-<header data-bs-theme="dark">
-  <div class="collapse text-bg-dark" id="navbarHeader">
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-8 col-md-7 py-4">
-          <h4 class="text-warning">About</h4>
-          <p class="text-white">Add some information about the album below, the author, or any other background context. Make it a few sentences long so folks can pick up some informative tidbits. Then, link them off to some social networking sites or contact information.</p>
-        </div>
-        <div class="col-sm-4 offset-md-1 py-4">
-          <h4 class="text-warning">Contact</h4>
-          <ul class="list-unstyled">
-            <li><a href="#" class="text-white">Follow on Twitter</a></li>
-            <li><a href="#" class="text-white">Like on Facebook</a></li>
-            <li><a href="#" class="text-white">Email me</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="navbar navbar-dark bg-dark shadow-lg">
-    <div class="container d-flex justify-content-between">
-      <a href="#" class="navbar-brand d-flex align-items-center">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="#ffc107" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" aria-hidden="true" class="me-2" viewBox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
-        <strong class="text-warning">Archie Web App</strong>
-      </a>
-      <div class="input-container">
-        <input type="text" class="form-control" style="width: 50%; margin: 0 auto;" placeholder="Search">
-      </div>
-      <div class="d-flex ms-auto">
-        <button class="navbar-toggler fw-bold me-2 text-white" type="button" data-bs-toggle="modal" data-bs-target="#exampleModalToggle" aria-controls="" aria-expanded="false" aria-label="Toggle navigation">
-          Sign In
-        </button>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-      </div>
-    </div>
-  </div>
-</header>
-
-<main>
-  <h1 class="text-warning m-3">Featured Today</h1>
-  <section class="py-5 text-center container">
-    <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
-      <div class="carousel-inner">
-        <div class="carousel-item active" data-bs-interval="10000">
-          <div class="d-flex justify-content-center align-items-center">
-            <img src="promotion1.jpg" height="450" class="d-block mx-auto" alt="...">
+  <body class="bg-dark">
+    <header data-bs-theme="dark">
+      <nav class="navbar navbar-dark shadow-lg">
+        <div class="container">
+          <a class="navbar-brand" href="#">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="#ffc107" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" aria-hidden="true" viewBox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+            <strong class="text-warning">Archie Web App</strong>
+          </a>
+          <form class="mx-auto w-50">
+            <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+          </form>
+          <div class="d-flex ms-auto">
+            <button class="btn text-light me-2" type="button" data-bs-toggle="modal" data-bs-target="#exampleModalToggle" aria-controls="" aria-expanded="false" aria-label="Toggle navigation">
+              Sign In
+            </button>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
           </div>
         </div>
-        <div class="carousel-item" data-bs-interval="2000">
+      </nav>
+      <div class="collapse text-bg-dark" id="navbarHeader">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-8 col-md-7 py-4">
+              <h4 class="text-warning">About</h4>
+              <p class="text-white">Add some information about the album below, the author, or any other background context. Make it a few sentences long so folks can pick up some informative tidbits. Then, link them off to some social networking sites or contact information.</p>
+            </div>
+            <div class="col-sm-4 offset-md-1 py-4">
+              <h4 class="text-warning">Contact</h4>
+              <ul class="list-unstyled">
+                <li><a href="#" class="text-white">Follow on Twitter</a></li>
+                <li><a href="#" class="text-white">Like on Facebook</a></li>
+                <li><a href="#" class="text-white">Email me</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+<main class="bg-dark">
+  <h1 class="text-warning head_text m-3 text-center">Featured Movies</h1>
+  <section class="py-2 text-center container">
+    <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active" data-bs-interval="3000">
           <div class="d-flex justify-content-center align-items-center">
-            <img src="promotion2.jpg" height="450" class="d-block mx-auto" alt="...">
+            <img src="promotion1.jpg" class="d-block w-100 carousel-image" alt="...">
+          </div>
+        </div>
+        <div class="carousel-item" data-bs-interval="3000">
+          <div class="d-flex justify-content-center align-items-center">
+            <img src="promotion2.jpg" class="d-block w-100 carousel-image" alt="...">
           </div>
         </div>
         <div class="carousel-item">
           <div class="d-flex justify-content-center align-items-center">
-            <img src="promotion3.jpg" height="450" class="d-block mx-auto" alt="...">
+            <img src="promotion3.jpg" class="d-block w-100 carousel-image" alt="...">
           </div>
         </div>
       </div>
       <button class="carousel-control-prev" style="width: 100px;" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="carousel-control-prev-icon white-arrow" aria-hidden="true"></span>
         <span class="visually-hidden">Previous</span>
       </button>
       <button class="carousel-control-next" style="width: 100px;" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="carousel-control-next-icon white-arrow" aria-hidden="true"></span>
         <span class="visually-hidden">Next</span>
       </button>
     </div>
+    
   </section>
-  <h1 class="text-warning m-3">Popular Right Now</h1>
- <div id="cardCarousel1" class="carousel slide" data-bs-ride="carousel">
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <div class="album py-5 bg-dark">
-        <div class="container">
-          <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-            <!-- Card 1 -->
-            <div class="col-md-2">
-              <div class="card shadow-sm" style="width:190px; height: 440px;">
-                <img src="joker.jpg" class="card-img-top" alt="Card image" style="width: 100%; height: 100%; object-fit: cover; object-position: center;">
-                <div class="card-body">
-                  <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
-                      <button type="button" class="btn btn-sm btn-outline-secondary text-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">Rate</button>
-                    </div>
-                    <small class="text-body-secondary">9⭐</small>
-                  </div>
-                  <p class="card-text text-white text-left pt-2">Joker</p>
-                  <a href="#" class="navbar-brand d-flex justify-content-center align-items-center pt-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" viewBox="0 0 24 24">
-                      <path d="M12 2L20 12 12 22z"/>
-                    </svg>
-                    <strong class="text-white ms-2">Trailer</strong>
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            
-
-            <!-- Card 1 -->
-            <div class="col-md-2">
-              <div class="card shadow-sm" style="width:190px; height: 440px;">
-                <img src="joker.jpg" class="card-img-top" alt="Card image" style="width: 100%; height: 100%; object-fit: cover; object-position: center;">
-                <div class="card-body">
-                  <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
-                      <button type="button" class="btn btn-sm btn-outline-secondary text-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">Rate</button>
-                    </div>
-                    <small class="text-body-secondary">9⭐</small>
-                  </div>
-                  <p class="card-text text-white text-left pt-2">Joker</p>
-                  <a href="#" class="navbar-brand d-flex justify-content-center align-items-center pt-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" viewBox="0 0 24 24">
-                      <path d="M12 2L20 12 12 22z"/>
-                    </svg>
-                    <strong class="text-white ms-2">Trailer</strong>
-                  </a>
-                </div>
-              </div>
-            </div>
-            <!-- Card 1 -->
-            <div class="col-md-2">
-              <div class="card shadow-sm" style="width:190px; height: 440px;">
-                <img src="joker.jpg" class="card-img-top" alt="Card image" style="width: 100%; height: 100%; object-fit: cover; object-position: center;">
-                <div class="card-body">
-                  <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
-                      <button type="button" class="btn btn-sm btn-outline-secondary text-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">Rate</button>
-                    </div>
-                    <small class="text-body-secondary">9⭐</small>
-                  </div>
-                  <p class="card-text text-white text-left pt-2">Joker</p>
-                  <a href="#" class="navbar-brand d-flex justify-content-center align-items-center pt-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" viewBox="0 0 24 24">
-                      <path d="M12 2L20 12 12 22z"/>
-                    </svg>
-                    <strong class="text-white ms-2">Trailer</strong>
-                  </a>
-                </div>
-              </div>
-            </div>
-            <!-- Card 1 -->
-            <div class="col-md-2">
-              <div class="card shadow-sm" style="width:190px; height: 440px;">
-                <img src="joker.jpg" class="card-img-top" alt="Card image" style="width: 100%; height: 100%; object-fit: cover; object-position: center;">
-                <div class="card-body">
-                  <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
-                      <button type="button" class="btn btn-sm btn-outline-secondary text-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">Rate</button>
-                    </div>
-                    <small class="text-body-secondary">9⭐</small>
-                  </div>
-                  <p class="card-text text-white text-left pt-2">Joker</p>
-                  <a href="#" class="navbar-brand d-flex justify-content-center align-items-center pt-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" viewBox="0 0 24 24">
-                      <path d="M12 2L20 12 12 22z"/>
-                    </svg>
-                    <strong class="text-white ms-2">Trailer</strong>
-                  </a>
-                </div>
-              </div>
-            </div>
-            <!-- Card 1 -->
-            <div class="col-md-2">
-              <div class="card shadow-sm" style="width:190px; height: 440px;">
-                <img src="joker.jpg" class="card-img-top" alt="Card image" style="width: 100%; height: 100%; object-fit: cover; object-position: center;">
-                <div class="card-body">
-                  <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
-                      <button type="button" class="btn btn-sm btn-outline-secondary text-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">Rate</button>
-                    </div>
-                    <small class="text-body-secondary">9⭐</small>
-                  </div>
-                  <p class="card-text text-white text-left pt-2">Joker</p>
-                  <a href="#" class="navbar-brand d-flex justify-content-center align-items-center pt-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" viewBox="0 0 24 24">
-                      <path d="M12 2L20 12 12 22z"/>
-                    </svg>
-                    <strong class="text-white ms-2">Trailer</strong>
-                  </a>
-                </div>
-              </div>
-            </div>
-            <!-- Card 1 -->
-            <div class="col-md-2">
-              <div class="card shadow-sm" style="width:190px; height: 440px;">
-                <img src="joker.jpg" class="card-img-top" alt="Card image" style="width: 100%; height: 100%; object-fit: cover; object-position: center;">
-                <div class="card-body">
-                  <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
-                      <button type="button" class="btn btn-sm btn-outline-secondary text-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">Rate</button>
-                    </div>
-                    <small class="text-body-secondary">9⭐</small>
-                  </div>
-                  <p class="card-text text-white text-left pt-2">Joker</p>
-                  <a href="#" class="navbar-brand d-flex justify-content-center align-items-center pt-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" viewBox="0 0 24 24">
-                      <path d="M12 2L20 12 12 22z"/>
-                    </svg>
-                    <strong class="text-white ms-2">Trailer</strong>
-                  </a>
-                </div>
-              </div>
-            </div>
+ <!-- card area start -->
+ <div class="card_wrapper">
+  <div class="container">
+      <div class="row">
+          <div class="col-12 text-center">
+              <h2 class="head_text text-warning">Popular Today</h2>
           </div>
-        </div>
-      </div>
-    </div>
-    
-    <div class="carousel-item">
-      <div class="album py-5 bg-dark">
-        <div class="container">
-          <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-             <!-- Card 1 -->
-            <div class="col-md-2">
-              <div class="card shadow-sm" style="width:190px; height: 440px;">
-                <img src="tomb.jpg" class="card-img-top" alt="Card image" style="width: 100%; height: 100%; object-fit: cover; object-position: center;">
-                <div class="card-body">
-                  <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
-                      <button type="button" class="btn btn-sm btn-outline-secondary text-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">Rate</button>
-                    </div>
-                    <small class="text-body-secondary">9⭐</small>
+          <div class="col-12">
+              <div class="owl-carousel slider_carousel">
+                  <div class="card_box">
+                      <img class="img-fluid w-100" src="img/red.jpg" alt="">
+                      <div class="card_text">
+                        <div class="d-flex justify-content-between align-items-center">
+                          <div class="btn-group">
+                            <button type="button" class="btn btn-sm btn-outline-secondary text-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">Rate</button>
+                          </div>
+                          <small>9⭐</small>
+                        </div>
+                          <h4 class="mt-3">Red One</h4>
+                      </div>
                   </div>
-                  <p class="card-text text-white text-left pt-2">Tomb Raider</p>
-                  <a href="#" class="navbar-brand d-flex justify-content-center align-items-center pt-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" viewBox="0 0 24 24">
-                      <path d="M12 2L20 12 12 22z"/>
-                    </svg>
-                    <strong class="text-white ms-2">Trailer</strong>
-                  </a>
-                </div>
-              </div>
-            </div>
-             <!-- Card 1 -->
-            <div class="col-md-2">
-              <div class="card shadow-sm" style="width:190px; height: 440px;">
-                <img src="tomb.jpg" class="card-img-top" alt="Card image" style="width: 100%; height: 100%; object-fit: cover; object-position: center;">
-                <div class="card-body">
-                  <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
-                      <button type="button" class="btn btn-sm btn-outline-secondary text-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">Rate</button>
-                    </div>
-                    <small class="text-body-secondary">9⭐</small>
+                  <div class="card_box">
+                      <img class="img-fluid w-100" src="img/tomb.jpg" alt="">
+                      <div class="card_text">
+                        <div class="d-flex justify-content-between align-items-center">
+                          <div class="btn-group">
+                            <button type="button" class="btn btn-sm btn-outline-secondary text-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">Rate</button>
+                          </div>
+                          <small>9⭐</small>
+                        </div>
+                          <h4 class="mt-3">Tomb Raider</h4>
+                      </div>
                   </div>
-                  <p class="card-text text-white text-left pt-2">Tomb Raider</p>
-                  <a href="#" class="navbar-brand d-flex justify-content-center align-items-center pt-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" viewBox="0 0 24 24">
-                      <path d="M12 2L20 12 12 22z"/>
-                    </svg>
-                    <strong class="text-white ms-2">Trailer</strong>
-                  </a>
-                </div>
-              </div>
-            </div>
-             <!-- Card 1 -->
-            <div class="col-md-2">
-              <div class="card shadow-sm" style="width:190px; height: 440px;">
-                <img src="tomb.jpg" class="card-img-top" alt="Card image" style="width: 100%; height: 100%; object-fit: cover; object-position: center;">
-                <div class="card-body">
-                  <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
-                      <button type="button" class="btn btn-sm btn-outline-secondary text-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">Rate</button>
-                    </div>
-                    <small class="text-body-secondary">9⭐</small>
+                  <div class="card_box">
+                      <img class="img-fluid w-100" src="img/dont.jpg" alt="">
+                      <div class="card_text">
+                        <div class="d-flex justify-content-between align-items-center">
+                          <div class="btn-group">
+                            <button type="button" class="btn btn-sm btn-outline-secondary text-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">Rate</button>
+                          </div>
+                          <small>9⭐</small>
+                        </div>
+                          <h4 class="mt-3">Don't Move</h4>
+                      </div>
                   </div>
-                  <p class="card-text text-white text-left pt-2">Tomb Raider</p>
-                  <a href="#" class="navbar-brand d-flex justify-content-center align-items-center pt-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" viewBox="0 0 24 24">
-                      <path d="M12 2L20 12 12 22z"/>
-                    </svg>
-                    <strong class="text-white ms-2">Trailer</strong>
-                  </a>
-                </div>
-              </div>
-            </div>
-             <!-- Card 1 -->
-            <div class="col-md-2">
-              <div class="card shadow-sm" style="width:190px; height: 440px;">
-                <img src="tomb.jpg" class="card-img-top" alt="Card image" style="width: 100%; height: 100%; object-fit: cover; object-position: center;">
-                <div class="card-body">
-                  <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
-                      <button type="button" class="btn btn-sm btn-outline-secondary text-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">Rate</button>
-                    </div>
-                    <small class="text-body-secondary">9⭐</small>
+                  <div class="card_box">
+                      <img class="img-fluid w-100" src="img/blits.jpg" alt="">
+                      <div class="card_text">
+                        <div class="d-flex justify-content-between align-items-center">
+                          <div class="btn-group">
+                            <button type="button" class="btn btn-sm btn-outline-secondary text-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">Rate</button>
+                          </div>
+                          <small>9⭐</small>
+                        </div>
+                          <h4 class="mt-3">Blitz</h4>
+                      </div>
                   </div>
-                  <p class="card-text text-white text-left pt-2">Tomb Raider</p>
-                  <a href="#" class="navbar-brand d-flex justify-content-center align-items-center pt-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" viewBox="0 0 24 24">
-                      <path d="M12 2L20 12 12 22z"/>
-                    </svg>
-                    <strong class="text-white ms-2">Trailer</strong>
-                  </a>
-                </div>
-              </div>
-            </div>
-             <!-- Card 1 -->
-            <div class="col-md-2">
-              <div class="card shadow-sm" style="width:190px; height: 440px;">
-                <img src="tomb.jpg" class="card-img-top" alt="Card image" style="width: 100%; height: 100%; object-fit: cover; object-position: center;">
-                <div class="card-body">
-                  <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
-                      <button type="button" class="btn btn-sm btn-outline-secondary text-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">Rate</button>
-                    </div>
-                    <small class="text-body-secondary">9⭐</small>
+                  <div class="card_box">
+                      <img class="img-fluid w-100" src="img/joker.jpg" alt="">
+                      <div class="card_text">
+                        <div class="d-flex justify-content-between align-items-center">
+                          <div class="btn-group">
+                            <button type="button" class="btn btn-sm btn-outline-secondary text-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">Rate</button>
+                          </div>
+                          <small>9⭐</small>
+                        </div>
+                          <h4 class="mt-3">Joker</h4>
+                      </div>
                   </div>
-                  <p class="card-text text-white text-left pt-2">Tomb Raider</p>
-                  <a href="#" class="navbar-brand d-flex justify-content-center align-items-center pt-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" viewBox="0 0 24 24">
-                      <path d="M12 2L20 12 12 22z"/>
-                    </svg>
-                    <strong class="text-white ms-2">Trailer</strong>
-                  </a>
-                </div>
-              </div>
-            </div>
-             <!-- Card 1 -->
-            <div class="col-md-2">
-              <div class="card shadow-sm" style="width:190px; height: 440px;">
-                <img src="tomb.jpg" class="card-img-top" alt="Card image" style="width: 100%; height: 100%; object-fit: cover; object-position: center;">
-                <div class="card-body">
-                  <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
-                      <button type="button" class="btn btn-sm btn-outline-secondary text-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">Rate</button>
-                    </div>
-                    <small class="text-body-secondary">9⭐</small>
+                  <div class="card_box">
+                      <img class="img-fluid w-100" src="img/gladiator.jpg" alt="">
+                      <div class="card_text">
+                        <div class="d-flex justify-content-between align-items-center">
+                          <div class="btn-group">
+                            <button type="button" class="btn btn-sm btn-outline-secondary text-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">Rate</button>
+                          </div>
+                          <small>9⭐</small>
+                        </div>
+                          <h4 class="mt-3">Gladiator</h4>
+                      </div>
                   </div>
-                  <p class="card-text text-white text-left pt-2">Tomb Raider</p>
-                  <a href="#" class="navbar-brand d-flex justify-content-center align-items-center pt-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" viewBox="0 0 24 24">
-                      <path d="M12 2L20 12 12 22z"/>
-                    </svg>
-                    <strong class="text-white ms-2">Trailer</strong>
-                  </a>
-                </div>
               </div>
-            </div>
           </div>
-        </div>
       </div>
-    </div>
-    <!-- Additional carousel items go here, structured like above -->
   </div>
-  
-  <button class="carousel-control-prev" type="button" style="width: 100px;" data-bs-target="#cardCarousel1" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-  </button>
-  
-  <button class="carousel-control-next" type="button" style="width: 100px;" data-bs-target="#cardCarousel1" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </button>
 </div>
-<h1 class="text-warning m-3">On Theater</h1>
-<div id="cardCarousel" class="carousel slide" data-bs-ride="carousel">
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <div class="album py-5 bg-dark">
-        <div class="container">
-          <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-             <!-- Card 1 -->
-            <div class="col-md-2">
-              <div class="card shadow-sm" style="width:190px; height: 440px;">
-                <img src="blits.jpg" class="card-img-top" alt="Card image" style="width: 100%; height: 100%; object-fit: cover; object-position: center;">
-                <div class="card-body">
-                  <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
-                      <button type="button" class="btn btn-sm btn-outline-secondary text-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">Rate</button>
-                    </div>
-                    <small class="text-body-secondary">9⭐</small>
-                  </div>
-                  <p class="card-text text-white text-left pt-2">Blitz</p>
-                  <a href="#" class="navbar-brand d-flex justify-content-center align-items-center pt-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" viewBox="0 0 24 24">
-                      <path d="M12 2L20 12 12 22z"/>
-                    </svg>
-                    <strong class="text-white ms-2">Trailer</strong>
-                  </a>
-                </div>
-              </div>
-            </div>
-             <!-- Card 1 -->
-            <div class="col-md-2">
-              <div class="card shadow-sm" style="width:190px; height: 440px;">
-                <img src="blits.jpg" class="card-img-top" alt="Card image" style="width: 100%; height: 100%; object-fit: cover; object-position: center;">
-                <div class="card-body">
-                  <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
-                      <button type="button" class="btn btn-sm btn-outline-secondary text-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">Rate</button>
-                    </div>
-                    <small class="text-body-secondary">9⭐</small>
-                  </div>
-                  <p class="card-text text-white text-left pt-2">Blitz</p>
-                  <a href="#" class="navbar-brand d-flex justify-content-center align-items-center pt-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" viewBox="0 0 24 24">
-                      <path d="M12 2L20 12 12 22z"/>
-                    </svg>
-                    <strong class="text-white ms-2">Trailer</strong>
-                  </a>
-                </div>
-              </div>
-            </div>
-             <!-- Card 1 -->
-            <div class="col-md-2">
-              <div class="card shadow-sm" style="width:190px; height: 440px;">
-                <img src="blits.jpg" class="card-img-top" alt="Card image" style="width: 100%; height: 100%; object-fit: cover; object-position: center;">
-                <div class="card-body">
-                  <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
-                      <button type="button" class="btn btn-sm btn-outline-secondary text-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">Rate</button>
-                    </div>
-                    <small class="text-body-secondary">9⭐</small>
-                  </div>
-                  <p class="card-text text-white text-left pt-2">Blitz</p>
-                  <a href="#" class="navbar-brand d-flex justify-content-center align-items-center pt-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" viewBox="0 0 24 24">
-                      <path d="M12 2L20 12 12 22z"/>
-                    </svg>
-                    <strong class="text-white ms-2">Trailer</strong>
-                  </a>
-                </div>
-              </div>
-            </div>
-             <!-- Card 1 -->
-            <div class="col-md-2">
-              <div class="card shadow-sm" style="width:190px; height: 440px;">
-                <img src="blits.jpg" class="card-img-top" alt="Card image" style="width: 100%; height: 100%; object-fit: cover; object-position: center;">
-                <div class="card-body">
-                  <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
-                      <button type="button" class="btn btn-sm btn-outline-secondary text-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">Rate</button>
-                    </div>
-                    <small class="text-body-secondary">9⭐</small>
-                  </div>
-                  <p class="card-text text-white text-left pt-2">Blitz</p>
-                  <a href="#" class="navbar-brand d-flex justify-content-center align-items-center pt-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" viewBox="0 0 24 24">
-                      <path d="M12 2L20 12 12 22z"/>
-                    </svg>
-                    <strong class="text-white ms-2">Trailer</strong>
-                  </a>
-                </div>
-              </div>
-            </div>
-             <!-- Card 1 -->
-            <div class="col-md-2">
-              <div class="card shadow-sm" style="width:190px; height: 440px;">
-                <img src="blits.jpg" class="card-img-top" alt="Card image" style="width: 100%; height: 100%; object-fit: cover; object-position: center;">
-                <div class="card-body">
-                  <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
-                      <button type="button" class="btn btn-sm btn-outline-secondary text-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">Rate</button>
-                    </div>
-                    <small class="text-body-secondary">9⭐</small>
-                  </div>
-                  <p class="card-text text-white text-left pt-2">Blitz</p>
-                  <a href="#" class="navbar-brand d-flex justify-content-center align-items-center pt-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" viewBox="0 0 24 24">
-                      <path d="M12 2L20 12 12 22z"/>
-                    </svg>
-                    <strong class="text-white ms-2">Trailer</strong>
-                  </a>
-                </div>
-              </div>
-            </div>
-             <!-- Card 1 -->
-            <div class="col-md-2">
-              <div class="card shadow-sm" style="width:190px; height: 440px;">
-                <img src="blits.jpg" class="card-img-top" alt="Card image" style="width: 100%; height: 100%; object-fit: cover; object-position: center;">
-                <div class="card-body">
-                  <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
-                      <button type="button" class="btn btn-sm btn-outline-secondary text-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">Rate</button>
-                    </div>
-                    <small class="text-body-secondary">9⭐</small>
-                  </div>
-                  <p class="card-text text-white text-left pt-2">Blitz</p>
-                  <a href="#" class="navbar-brand d-flex justify-content-center align-items-center pt-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" viewBox="0 0 24 24">
-                      <path d="M12 2L20 12 12 22z"/>
-                    </svg>
-                    <strong class="text-white ms-2">Trailer</strong>
-                  </a>
-                </div>
-              </div>
-            </div>
+<!-- card area end -->
+ <!-- card area start -->
+ <div class="card_wrapper">
+  <div class="container">
+      <div class="row">
+          <div class="col-12 text-center">
+              <h2 class="head_text text-warning">Now Showing In Theaters</h2>
           </div>
-        </div>
-      </div>
-    </div>
-    
-    <div class="carousel-item">
-      <div class="album py-5 bg-dark">
-        <div class="container">
-          <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-             <!-- Card 1 -->
-            <div class="col-md-2">
-              <div class="card shadow-sm" style="width:190px; height: 440px;">
-                <img src="dont.jpg" class="card-img-top" alt="Card image" style="width: 100%; height: 100%; object-fit: cover; object-position: center;">
-                <div class="card-body">
-                  <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
-                      <button type="button" class="btn btn-sm btn-outline-secondary text-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">Rate</button>
-                    </div>
-                    <small class="text-body-secondary">9⭐</small>
+          <div class="col-12">
+              <div class="owl-carousel slider_carousel">
+                  <div class="card_box">
+                      <img class="img-fluid w-100" src="img/red.jpg" alt="">
+                      <div class="card_text">
+                        <div class="d-flex justify-content-between align-items-center">
+                          <div class="btn-group">
+                            <button type="button" class="btn btn-sm btn-outline-secondary text-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">Rate</button>
+                          </div>
+                          <small>9⭐</small>
+                        </div>
+                          <h4 class="mt-3">Red One</h4>
+                      </div>
                   </div>
-                  <p class="card-text text-white text-left pt-2">Don't Move</p>
-                  <a href="#" class="navbar-brand d-flex justify-content-center align-items-center pt-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" viewBox="0 0 24 24">
-                      <path d="M12 2L20 12 12 22z"/>
-                    </svg>
-                    <strong class="text-white ms-2">Trailer</strong>
-                  </a>
-                </div>
-              </div>
-            </div>
-             <!-- Card 1 -->
-            <div class="col-md-2">
-              <div class="card shadow-sm" style="width:190px; height: 440px;">
-                <img src="dont.jpg" class="card-img-top" alt="Card image" style="width: 100%; height: 100%; object-fit: cover; object-position: center;">
-                <div class="card-body">
-                  <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
-                      <button type="button" class="btn btn-sm btn-outline-secondary text-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">Rate</button>
-                    </div>
-                    <small class="text-body-secondary">9⭐</small>
+                  <div class="card_box">
+                      <img class="img-fluid w-100" src="img/tomb.jpg" alt="">
+                      <div class="card_text">
+                        <div class="d-flex justify-content-between align-items-center">
+                          <div class="btn-group">
+                            <button type="button" class="btn btn-sm btn-outline-secondary text-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">Rate</button>
+                          </div>
+                          <small>9⭐</small>
+                        </div>
+                          <h4 class="mt-3">Tomb Raider</h4>
+                      </div>
                   </div>
-                  <p class="card-text text-white text-left pt-2">Don't Move</p>
-                  <a href="#" class="navbar-brand d-flex justify-content-center align-items-center pt-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" viewBox="0 0 24 24">
-                      <path d="M12 2L20 12 12 22z"/>
-                    </svg>
-                    <strong class="text-white ms-2">Trailer</strong>
-                  </a>
-                </div>
-              </div>
-            </div>
-             <!-- Card 1 -->
-            <div class="col-md-2">
-              <div class="card shadow-sm" style="width:190px; height: 440px;">
-                <img src="dont.jpg" class="card-img-top" alt="Card image" style="width: 100%; height: 100%; object-fit: cover; object-position: center;">
-                <div class="card-body">
-                  <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
-                      <button type="button" class="btn btn-sm btn-outline-secondary text-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">Rate</button>
-                    </div>
-                    <small class="text-body-secondary">9⭐</small>
+                  <div class="card_box">
+                      <img class="img-fluid w-100" src="img/dont.jpg" alt="">
+                      <div class="card_text">
+                        <div class="d-flex justify-content-between align-items-center">
+                          <div class="btn-group">
+                            <button type="button" class="btn btn-sm btn-outline-secondary text-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">Rate</button>
+                          </div>
+                          <small>9⭐</small>
+                        </div>
+                          <h4 class="mt-3">Don't Move</h4>
+                      </div>
                   </div>
-                  <p class="card-text text-white text-left pt-2">Don't Move</p>
-                  <a href="#" class="navbar-brand d-flex justify-content-center align-items-center pt-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" viewBox="0 0 24 24">
-                      <path d="M12 2L20 12 12 22z"/>
-                    </svg>
-                    <strong class="text-white ms-2">Trailer</strong>
-                  </a>
-                </div>
-              </div>
-            </div>
-             <!-- Card 1 -->
-            <div class="col-md-2">
-              <div class="card shadow-sm" style="width:190px; height: 440px;">
-                <img src="dont.jpg" class="card-img-top" alt="Card image" style="width: 100%; height: 100%; object-fit: cover; object-position: center;">
-                <div class="card-body">
-                  <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
-                      <button type="button" class="btn btn-sm btn-outline-secondary text-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">Rate</button>
-                    </div>
-                    <small class="text-body-secondary">9⭐</small>
+                  <div class="card_box">
+                      <img class="img-fluid w-100" src="img/blits.jpg" alt="">
+                      <div class="card_text">
+                        <div class="d-flex justify-content-between align-items-center">
+                          <div class="btn-group">
+                            <button type="button" class="btn btn-sm btn-outline-secondary text-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">Rate</button>
+                          </div>
+                          <small>9⭐</small>
+                        </div>
+                          <h4 class="mt-3">Blitz</h4>
+                      </div>
                   </div>
-                  <p class="card-text text-white text-left pt-2">Don't Move</p>
-                  <a href="#" class="navbar-brand d-flex justify-content-center align-items-center pt-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" viewBox="0 0 24 24">
-                      <path d="M12 2L20 12 12 22z"/>
-                    </svg>
-                    <strong class="text-white ms-2">Trailer</strong>
-                  </a>
-                </div>
-              </div>
-            </div>
-             <!-- Card 1 -->
-            <div class="col-md-2">
-              <div class="card shadow-sm" style="width:190px; height: 440px;">
-                <img src="dont.jpg" class="card-img-top" alt="Card image" style="width: 100%; height: 100%; object-fit: cover; object-position: center;">
-                <div class="card-body">
-                  <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
-                      <button type="button" class="btn btn-sm btn-outline-secondary text-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">Rate</button>
-                    </div>
-                    <small class="text-body-secondary">9⭐</small>
+                  <div class="card_box">
+                      <img class="img-fluid w-100" src="img/joker.jpg" alt="">
+                      <div class="card_text">
+                        <div class="d-flex justify-content-between align-items-center">
+                          <div class="btn-group">
+                            <button type="button" class="btn btn-sm btn-outline-secondary text-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">Rate</button>
+                          </div>
+                          <small>9⭐</small>
+                        </div>
+                          <h4 class="mt-3">Joker</h4>
+                      </div>
                   </div>
-                  <p class="card-text text-white text-left pt-2">Don't Move</p>
-                  <a href="#" class="navbar-brand d-flex justify-content-center align-items-center pt-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" viewBox="0 0 24 24">
-                      <path d="M12 2L20 12 12 22z"/>
-                    </svg>
-                    <strong class="text-white ms-2">Trailer</strong>
-                  </a>
-                </div>
-              </div>
-            </div>
-             <!-- Card 1 -->
-            <div class="col-md-2">
-              <div class="card shadow-sm" style="width:190px; height: 440px;">
-                <img src="dont.jpg" class="card-img-top" alt="Card image" style="width: 100%; height: 100%; object-fit: cover; object-position: center;">
-                <div class="card-body">
-                  <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
-                      <button type="button" class="btn btn-sm btn-outline-secondary text-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">Rate</button>
-                    </div>
-                    <small class="text-body-secondary">9⭐</small>
+                  <div class="card_box">
+                      <img class="img-fluid w-100" src="img/squid.jpg" alt="">
+                      <div class="card_text">
+                        <div class="d-flex justify-content-between align-items-center">
+                          <div class="btn-group">
+                            <button type="button" class="btn btn-sm btn-outline-secondary text-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">Rate</button>
+                          </div>
+                          <small>9⭐</small>
+                        </div>
+                          <h4 class="mt-3">Squid Game</h4>
+                      </div>
                   </div>
-                  <p class="card-text text-white text-left pt-2">Don't Move</p>
-                  <a href="#" class="navbar-brand d-flex justify-content-center align-items-center pt-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" viewBox="0 0 24 24">
-                      <path d="M12 2L20 12 12 22z"/>
-                    </svg>
-                    <strong class="text-white ms-2">Trailer</strong>
-                  </a>
-                </div>
               </div>
-            </div>
-
           </div>
-        </div>
       </div>
-    </div>
-    <!-- Additional carousel items go here, structured like above -->
   </div>
-  
-  <button class="carousel-control-prev" style="width: 100px;" type="button" data-bs-target="#cardCarousel" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-  </button>
-  
-  <button class="carousel-control-next" style="width: 100px;" type="button" data-bs-target="#cardCarousel" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </button>
 </div>
-
-
+<!-- card area end -->
 </main>
 
 <footer class="text-body-secondary py-5">
@@ -785,26 +397,26 @@
 
 <div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
   <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
+    <div class="modal-content   ">
+      <div class="modal-header bg-dark">
         <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Sign In</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body">
+      <div class="modal-body bg-dark">
         <form class="">
           <div class="form-floating mb-3">
             <input type="email" class="form-control rounded-3" id="floatingInput" placeholder="name@example.com">
-            <label for="floatingInput">Email address</label>
+            <label  style="color: black;" for="floatingInput">Email address</label>
           </div>
           <div class="form-floating mb-3">
             <input type="password" class="form-control rounded-3" id="floatingPassword" placeholder="Password">
-            <label for="floatingPassword">Password</label>
+            <label style="color: black;"  for="floatingPassword">Password</label>
           </div>
           <button class="w-100 mb-2 btn btn-lg rounded-3 btn-primary" type="submit">Sign In</button>
         </form>
-        <hr class="my-4">
+        <hr class="my-4 bg-light">
         <p class="text-center">Not Registered Yet?</p>
-        <button class="w-100 mb-2 btn btn-lg rounded-3 btn-primary"  data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Sign up</button>
+        <button class="w-100 my-2 btn btn-lg rounded-3 btn-primary"  data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Sign up</button>
       </div>
     </div>
   </div>
@@ -812,33 +424,33 @@
 <div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
-      <div class="modal-header">
+      <div class="modal-header bg-dark">
         <h1 class="modal-title fs-5" id="exampleModalToggleLabel2">Sign Up</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body">
+      <div class="modal-body bg-dark">
         <form class="">
           <div class="form-floating mb-3">
             <input type="email" class="form-control rounded-3" id="floatingInput" placeholder="name@example.com">
-            <label for="floatingInput">First Name</label>
+            <label style="color: black;" for="floatingInput">First Name</label>
           </div>
           <div class="form-floating mb-3">
             <input type="email" class="form-control rounded-3" id="floatingInput" placeholder="name@example.com">
-            <label for="floatingInput">Last Name</label>
+            <label style="color: black;" for="floatingInput">Last Name</label>
           </div>
           <div class="form-floating mb-3">
             <input type="email" class="form-control rounded-3" id="floatingInput" placeholder="name@example.com">
-            <label for="floatingInput">Email address</label>
+            <label style="color: black;" for="floatingInput">Email address</label>
           </div>
           <div class="form-floating mb-3">
             <input type="password" class="form-control rounded-3" id="floatingPassword" placeholder="Password">
-            <label for="floatingPassword">Password</label>
+            <label style="color: black;" for="floatingPassword">Password</label>
           </div>
           <button class="w-100 mb-2 btn btn-lg rounded-3 btn-primary" type="submit">Register</button>
         </form>
-        <hr class="my-4">
+        <hr class="my-4 bg-light">
         <p class="text-center">Already Have an Account?</p>
-        <button class="w-100 mb-2 btn btn-lg rounded-3 btn-primary"  data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Sign In</button>
+        <button class="w-100 my-3 btn btn-lg rounded-3 btn-primary"  data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Sign In</button>
       </div>
     </div>
   </div>
@@ -848,10 +460,10 @@
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
-      <div class="modal-header justify-content-center" style="border-bottom: none;">
+      <div class="modal-header justify-content-center bg-dark" style="border-bottom: none;">
         <h1 class="modal-title text-warning" id="exampleModalLabel">Rate This Movie</h1>
       </div>
-      <div class="modal-body">
+      <div class="modal-body bg-dark">
         <div class="rating-body">
           <!-- The rating class is used to create the rating bar using radio input elements and labels -->
           <div class="rating">
@@ -883,7 +495,7 @@
           <textarea name="" id="" placeholder="Comment" rows="5" class="form-control"></textarea>
         </div>
       </div>
-      <div class="modal-footer justify-content-center" style="border-top: none;">
+      <div class="modal-footer justify-content-center bg-dark" style="border-top: none;">
         <button type="button" id="sad" class="btn  btn-primary" data-bs-dismiss="modal">Rate</button>
       </div>
     </div>
@@ -927,7 +539,7 @@ function displayModal() {
     // No star selected: show an error message or default behavior
     Swal.fire({
       title: "Error",
-      text: "Please select a star rating first!",
+      text: "Please select how many star first!",
       icon: "warning",
       background: '#333',
       color: '#fff'
@@ -959,6 +571,48 @@ document.querySelectorAll('.star-rate').forEach((star) => {
 
 document.getElementById('sad').addEventListener('click', displayModal);
 </script>
-
+<script src="js/jquery-3.4.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script>
+      function slider_carouselInit() {
+          $('.owl-carousel.slider_carousel').owlCarousel({
+              dots: false,
+              loop: true,
+              margin: 30,
+              stagePadding: 2,
+              autoplay: false,
+              nav: true,
+              navText: ["<i class='far fa-arrow-alt-circle-left'></i>","<i class='far fa-arrow-alt-circle-right'></i>"],
+              autoplayTimeout: 2000,
+              autoplayHoverPause: true,
+              responsive: {
+                  0: {
+                      items: 1
+                  },
+                  768: {
+                      items: 2,
+                  },
+                  992: {
+                      items: 5
+                  }
+              }
+          });
+      }
+      slider_carouselInit();
+  
+      // Add auto-scroll functionality
+      function autoScrollCarousel() {
+          var carousel = $('.owl-carousel.slider_carousel');
+          var carouselWidth = carousel.width();
+          var scrollPosition = carousel.scrollLeft();
+          var scrollAmount = carouselWidth / 2; // adjust this value to change the scroll amount
+      
+          carousel.trigger('next.owl.carousel', [1000]); // scroll to the next item
+      }
+  
+      // Call the auto-scroll function at a set interval
+      setInterval(autoScrollCarousel, 3000); // adjust this value to change the scroll interval
+  </script>
     </body>
 </html>
