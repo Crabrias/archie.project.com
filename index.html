@@ -855,25 +855,25 @@
         <div class="rating-body">
           <!-- The rating class is used to create the rating bar using radio input elements and labels -->
           <div class="rating">
-            <input type="radio" name="rating" id="rating-1" value="1" />
+            <input type="radio" name="rating" id="rating-1" class="star-rate" value="1" />
             <label for="rating-1">★</label>
-            <input type="radio" name="rating" id="rating-2" value="2" />
+            <input type="radio" name="rating" id="rating-2" class="star-rate" value="2" />
             <label for="rating-2">★</label>
-            <input type="radio" name="rating" id="rating-3" value="3" />
+            <input type="radio" name="rating" id="rating-3" class="star-rate" value="3" />
             <label for="rating-3">★</label>
-            <input type="radio" name="rating" id="rating-4" value="4" />
+            <input type="radio" name="rating" id="rating-4" class="star-rate" value="4" />
             <label for="rating-4">★</label>
-            <input type="radio" name="rating" id="rating-5" value="5" />
+            <input type="radio" name="rating" id="rating-5" class="star-rate" value="5" />
             <label for="rating-5">★</label>
-            <input type="radio" name="rating" id="rating-6" value="6" />
+            <input type="radio" name="rating" id="rating-6" class="star-rate" value="6" />
             <label for="rating-6">★</label>
-            <input type="radio" name="rating" id="rating-7" value="7" />
+            <input type="radio" name="rating" id="rating-7" class="star-rate" value="7" />
             <label for="rating-7">★</label>
-            <input type="radio" name="rating" id="rating-8" value="8" />
+            <input type="radio" name="rating" id="rating-8" class="star-rate" value="8" />
             <label for="rating-8">★</label>
-            <input type="radio" name="rating" id="rating-9" value="9" />
+            <input type="radio" name="rating" id="rating-9" class="star-rate" value="9" />
             <label for="rating-9">★</label>
-            <input type="radio" name="rating" id="rating-10" value="10" />
+            <input type="radio" name="rating" id="rating-10" class="star-rate" value="10" />
             <label for="rating-10">★</label>
           </div>
         </div>
@@ -889,22 +889,76 @@
     </div>
   </div>
 </div>
-
 <script src="bootstrap.bundle.min.js"></script>
 <script>
-  document.getElementById('sad').addEventListener('click',displayModal);
-  function displayModal(){
+  const COMMISSION_TERMS = [
+  { value: 1, rate: 0.95 }, // For 1 star, lower rate
+  { value: 2, rate: 0.85 },
+  { value: 3, rate: 0.75 },
+  { value: 4, rate: 0.65 },
+  { value: 5, rate: 0.55 },
+  { value: 6, rate: 0.45 },
+  { value: 7, rate: 0.35 },
+  { value: 8, rate: 0.25 },
+  { value: 9, rate: 0.25 },
+  { value: 10, rate: 0.15 }, // For 10 stars, higher rate
+];
+
+let selectedStar = null; // No star selected by default
+
+function getSelectedCommissionTerm(event) {
+  const selectedValue = parseInt(event.target.value);
+  return COMMISSION_TERMS.find(term => term.value === selectedValue);
+}
+
+function calculateCommission(selectedStar) {
+  const baseAmount = 100.00;
+  return (baseAmount * selectedStar.rate).toFixed(2);
+}
+
+function handleStarChange(event) {
+  selectedStar = getSelectedCommissionTerm(event);
+  console.log('Selected star value:', event.target.value); // Log the selected value
+  console.log('Selected commission rate:', selectedStar.rate); // Log the corresponding commission rate
+}
+
+function displayModal() {
+  if (!selectedStar) {
+    // No star selected: show an error message or default behavior
     Swal.fire({
-      title: "Earned Commission",
-      icon: "success",
-      timerProgressBar: true,
-      timer: 2000,
-      html: '<p class="custom-commission-font">0.00</p>',
-      background: '#333', // dark background
-      color: '#fff', // light text
-      
+      title: "Error",
+      text: "Please select a star rating first!",
+      icon: "warning",
+      background: '#333',
+      color: '#fff'
     });
+    return; // Exit the function early if no star is selected
   }
+
+  const commissionValue = calculateCommission(selectedStar);
+  const commissionElement = document.getElementById('commission-earned');
+  if (commissionElement) {
+    commissionElement.textContent = commissionValue; // Update the value on the page
+  }
+
+  // Show the Swal modal with the calculated commission
+  Swal.fire({
+    title: "Earned Commission",
+    icon: "success",
+    timerProgressBar: true,
+    timer: 2000,
+    html: `<p id="swal-commission-earned" class="custom-commission-font">${commissionValue}</p>`,
+    background: '#333', // dark background
+    color: '#fff', // light text
+  });
+}
+
+document.querySelectorAll('.star-rate').forEach((star) => {
+  star.addEventListener('change', handleStarChange);
+});
+
+document.getElementById('sad').addEventListener('click', displayModal);
 </script>
+
     </body>
 </html>
