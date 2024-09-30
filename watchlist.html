@@ -28,41 +28,35 @@
     <header data-bs-theme="dark">
       <nav class="navbar navbar-dark shadow-lg">
         <div class="container">
-          <a class="navbar-brand" href="#">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="#ffc107" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" aria-hidden="true" viewBox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
-            <strong class="text-warning">Archie Web App</strong>
-          </a>
-          <form class="mx-auto w-50">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="#">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="#ffc107" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" aria-hidden="true" viewBox="0 0 24 24">
+                <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+                <circle cx="12" cy="13" r="4"/>
+              </svg>
+              <strong class="text-warning">Archie Web App</strong>
+            </a>
+          </div>
+          <form class="mx-auto w-50 my-1">
             <input class="form-control" type="search" placeholder="Search" aria-label="Search">
           </form>
-          <div class="d-flex ms-auto">
-            <button class="btn text-light me-2" type="button" data-bs-toggle="modal" data-bs-target="#exampleModalToggle" aria-controls="" aria-expanded="false" aria-label="Toggle navigation">
-              Sadfools
-            </button>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
+          <div class="navbar-nav ms-auto">
+            <div class="btn-group me-2">
+              <div class="dropdown">
+                <button class="btn text-light dropdown-toggle" type="button" id="SadfoolsDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                  Sadfools
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end position-absolute" aria-labelledby="SadfoolsDropdown">
+                  <!-- Add your dropdown items here -->
+                  <li><a class="dropdown-item" href="#">Watchlist</a></li>
+                  <li><a class="dropdown-item" href="#">Settings</a></li>
+                  <li><a id="SignOut" class="dropdown-item" href="#">Sign Out</a></li>
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
       </nav>
-      <div class="collapse text-bg-dark" id="navbarHeader">
-        <div class="container">
-          <div class="row">
-            <div class="col-sm-8 col-md-7 py-4">
-              <h4 class="text-warning">About</h4>
-              <p class="text-white">Add some information about the album below, the author, or any other background context. Make it a few sentences long so folks can pick up some informative tidbits. Then, link them off to some social networking sites or contact information.</p>
-            </div>
-            <div class="col-sm-4 offset-md-1 py-4">
-              <h4 class="text-warning">Contact</h4>
-              <ul class="list-unstyled">
-                <li><a href="#" class="text-white">Follow on Twitter</a></li>
-                <li><a href="#" class="text-white">Like on Facebook</a></li>
-                <li><a href="#" class="text-white">Email me</a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
     </header>
 
     <main class="container">
@@ -265,6 +259,11 @@
 </div>
 <script src="bootstrap.bundle.min.js"></script>
 <script>
+  document.getElementById('SignOut').addEventListener('click', SignOut);
+
+  function SignOut(){
+    window.location.href = 'index.html';
+  }
 
   const COMMISSION_TERMS = [
   { value: 1, rate: 0.95 }, // For 1 star, lower rate
