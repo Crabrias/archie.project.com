@@ -442,6 +442,17 @@ function displayModal() {
     html: `<p id="swal-commission-earned" class="custom-commission-font">${commissionValue}</p>`,
     background: '#333', // dark background
     color: '#fff', // light text
+    backdrop: `
+      rgba(0, 0, 0, 0.7)
+      url("img/firework.gif")
+      center center
+      no-repeat
+    `,
+    didOpen: () => {
+      // Adjust the firework gif to cover the whole screen
+      const swalBackdrop = Swal.getContainer();
+      swalBackdrop.style.backgroundSize = 'cover'; // This makes the gif cover the entire backdrop
+    }
   });
 }
 
